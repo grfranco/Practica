@@ -1,19 +1,15 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class LoginPage extends PageModel {
 
-    //private WebDriver driver = new ChromeDriver();
-    private ChromeDriver driver;
+    public LoginPage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
+    }
 
-    static final String EXAMPLE_PAGE = "example";
+    static final String LOGIN_PAGE_URL = "http://the-internet.herokuapp.com/login";
     static final String USER_NAME = "username";
     static final String USER_FILL_NAME = "tomsmith";
     static final String USER_PASSWORD = "password";
@@ -21,37 +17,27 @@ public class LoginPage {
     static final String SUBMIT_BUTTON = "[class='radius']";
 
 
-    @FindBy(id = USER_NAME)
-    public WebElement username;
-
-    @FindBy(id = USER_PASSWORD)
-    public WebElement password;
-
-    @FindBy(css = SUBMIT_BUTTON)
-    public WebElement submit;
-
-    public LoginPage(ChromeDriver driver) {
-        this.driver = driver;
-    }
-
-    public void waitPageLoaded() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(EXAMPLE_PAGE)));
-    }
-
     public void fillUserName() {
-        //WebElement username = driver.findElement(By.id(USER_NAME));
-        username.sendKeys(USER_FILL_NAME);
+        this.fillText(By.id(USER_NAME), USER_FILL_NAME);
     }
 
     public void fillUserPass() {
-        //WebElement password = driver.findElement(By.id(USER_PASSWORD));
-        password.sendKeys(USER_FILL_PASSWORD);
+        this.fillText(By.id(USER_PASSWORD), USER_FILL_PASSWORD);
     }
 
     public void submit() {
-        //WebElement submit = driver.findElement(By.cssSelector(SUBMIT_BUTTON));
-        submit.click();
+        this.click(By.cssSelector(SUBMIT_BUTTON));
+    }
+
+    public void load() {
+        driver.get(LOGIN_PAGE_URL);
+        waitPageLoginLoaded();
+    }
+
+    public void waitPageLoginLoaded() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(USER_NAME)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(USER_PASSWORD)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(SUBMIT_BUTTON)));
     }
 
     public void login() {
@@ -59,4 +45,10 @@ public class LoginPage {
         fillUserPass();
         submit();
     }
+/*
+    public void waitPageLoginLoaded() {
+        //WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(EXAMPLE_PAGE)));
+    }
+*/
 }
