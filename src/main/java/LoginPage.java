@@ -36,8 +36,6 @@ public class LoginPage extends PageModel {
 
     public void waitPageLoginLoaded() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(USER_NAME)));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(USER_PASSWORD)));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(SUBMIT_BUTTON)));
     }
 
     public void login() {
@@ -45,10 +43,4 @@ public class LoginPage extends PageModel {
         fillUserPass();
         submit();
     }
-/*
-    public void waitPageLoginLoaded() {
-        //WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(EXAMPLE_PAGE)));
-    }
-*/
 }
