@@ -4,19 +4,19 @@ import testConfig.BaseChromeTest;
 
 public class LoginTests extends BaseChromeTest {
 
-    static final String WELCOME_TO_THE_PAGE = "Welcome to the Secure Area. When you are done click logout below.";
-    static final String FLASH_SUCCESS = "flash success";
+    static final String SUCCESFULL_MAIN_TEXT_SECURE_AREA_PAGE = "Welcome to the Secure Area. When you are done click logout below.";
+    static final String SUCCESFULL_POP_UP_SECURE_AREA_PAGE = "flash success";
 
     @Test
     public void LoginHappyPath() {
 
         LoginPage loginPage = new LoginPage(driver, wait);
-        WelcomePage welcomePage = new WelcomePage(driver, wait);
+        SecureAreaPage secureAreaPage = new SecureAreaPage(driver, wait);
 
         loginPage.load();
         loginPage.login();
 
-        Assert.assertEquals(WELCOME_TO_THE_PAGE, welcomePage.getSuccesfullLoginWelcomeText());
-        Assert.assertEquals(FLASH_SUCCESS, welcomePage.getLoginSuccesfullText());
+        Assert.assertEquals(SUCCESFULL_MAIN_TEXT_SECURE_AREA_PAGE, secureAreaPage.getSuccesfullMainSecureAreaPage());
+        Assert.assertEquals(SUCCESFULL_POP_UP_SECURE_AREA_PAGE, secureAreaPage.getSuccesfullPopUpSecureAreaPage());
     }
 }
