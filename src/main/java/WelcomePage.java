@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WelcomePage extends PageModel {
+public class WelcomePage extends CommonPage {
 
     static final String CLASS = "class";
     static final String WELCOME_MESSAGE = "[class='subheader']";

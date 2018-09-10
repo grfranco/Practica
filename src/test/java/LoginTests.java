@@ -1,7 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
+import testConfig.BaseChromeTest;
 
-public class LoginTest extends BaseTest {
+public class LoginTests extends BaseChromeTest {
 
     static final String WELCOME_TO_THE_PAGE = "Welcome to the Secure Area. When you are done click logout below.";
     static final String FLASH_SUCCESS = "flash success";
